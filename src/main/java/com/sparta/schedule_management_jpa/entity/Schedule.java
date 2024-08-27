@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,9 +20,10 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 작성 유저명
-    @Column(nullable = false, unique = true)
-    private String username;
+    // 유저 고유 식별자
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     // 할 일 제목
     @Column(nullable = false)
@@ -38,8 +40,11 @@ public class Schedule {
     private LocalDateTime updatedDate;
 
     // 댓글
-    @OneToMany(mappedBy = "schedule")
+    @OneToMany(mappedBy = "schedule",cascade = {CascadeType.PERSIST,CascadeType.REMOVE},orphanRemoval = true)
     private List<Comment> comments;
+
+    @OneToMany(mappedBy = "schedule", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+    private List<ScheduleUser> scheduleUsers = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {

@@ -1,9 +1,12 @@
 package com.sparta.schedule_management_jpa.controller;
 
 import com.sparta.schedule_management_jpa.dto.CommentDto;
+import com.sparta.schedule_management_jpa.dto.ScheduleDto;
 import com.sparta.schedule_management_jpa.entity.Comment;
 import com.sparta.schedule_management_jpa.service.CommentService;
+import com.sparta.schedule_management_jpa.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.query.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +17,14 @@ import java.util.List;
 public class CommentController {
 
     private final CommentService commentService;
+    private final ScheduleService scheduleService;
+
+//    @GetMapping
+//    public Page<ScheduleDto> getSchedules(
+//            @RequestParam(defaultValue = "0") int page,
+//            @RequestParam(defaultValue = "10") int size) {
+//        return scheduleService.getSchedules(page, size);
+//    }
 
     // 댓글 저장
     @PostMapping("/save/{scheduleId}")

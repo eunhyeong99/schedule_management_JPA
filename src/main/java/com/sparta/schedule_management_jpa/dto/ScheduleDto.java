@@ -11,17 +11,21 @@ import java.util.List;
 @Setter
 public class ScheduleDto {
     private Long id;
-    private String username;
+    private Long user_id;
+    private String user_name;
+    private String user_email;
     private String title;
     private String content;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private List<CommentDto> comments;
+    private List<Comment> comments;
 
-    public ScheduleDto(Long id, List<Comment> comments, String title, String username, LocalDateTime createdDate) {
+    public ScheduleDto(Long id, List<Comment> comments, String title, Long user, String email, String username, LocalDateTime createdDate) {
         this.id = id;
         this.comments = comments;
         this.title = title;
-        this.username = username;
+        this.user_id = user;
+        this.user_name = username;
+        this.user_email = email;
     }
 }
