@@ -1,3 +1,4 @@
 
 <h4>API 설계</h4>
-![image](https://github.com/user-attachments/assets/a2a7c144-90e2-433e-8e2d-6e79a0b87d8d)
+![image](https://github.com/user-attachments/assets/28915f17-e77b-4a1d-b4f0-12b9785ad250)
+
