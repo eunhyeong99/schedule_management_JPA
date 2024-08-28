@@ -1,6 +1,6 @@
 package com.sparta.schedule_management_jpa.dto;
 
-import com.sparta.schedule_management_jpa.entity.Comment;
+import com.sparta.schedule_management_jpa.domain.Comment;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,21 +11,14 @@ import java.util.List;
 @Setter
 public class ScheduleDto {
     private Long id;
-    private Long user_id;
-    private String user_name;
-    private String user_email;
     private String title;
     private String content;
-    private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
-    private List<Comment> comments;
+    private List<UserDto> users;
 
-    public ScheduleDto(Long id, List<Comment> comments, String title, Long user, String email, String username, LocalDateTime createdDate) {
+    public ScheduleDto(Long id, String title, String content, List<UserDto> users) {
         this.id = id;
-        this.comments = comments;
         this.title = title;
-        this.user_id = user;
-        this.user_name = username;
-        this.user_email = email;
+        this.content = content;
+        this.users = users;
     }
 }

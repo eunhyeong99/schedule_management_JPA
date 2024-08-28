@@ -1,4 +1,4 @@
-package com.sparta.schedule_management_jpa.entity;
+package com.sparta.schedule_management_jpa.domain;
 
 
 import jakarta.persistence.*;
@@ -6,15 +6,14 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "Domainschedule")
 @Getter
 @Setter
-@RequiredArgsConstructor
-public class Schedule {
+public class Schedule extends Timestamped{
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,11 +32,6 @@ public class Schedule {
     @Column(nullable = false)
     private String content;
 
-    // 작성일
-    private LocalDateTime createdDate;
-
-    // 수정일
-    private LocalDateTime updatedDate;
 
     // 댓글
     @OneToMany(mappedBy = "schedule",cascade = {CascadeType.PERSIST,CascadeType.REMOVE},orphanRemoval = true)
@@ -45,15 +39,5 @@ public class Schedule {
 
     @OneToMany(mappedBy = "schedule", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<ScheduleUser> scheduleUsers = new ArrayList<>();
-
-    @PrePersist
-    protected void onCreate() {
-        createdDate = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedDate = LocalDateTime.now();
-    }
 
 }

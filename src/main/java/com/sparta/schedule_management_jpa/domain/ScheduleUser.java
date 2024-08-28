@@ -1,15 +1,12 @@
-package com.sparta.schedule_management_jpa.entity;
+package com.sparta.schedule_management_jpa.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
-@Table(name = "schedule_user")
 public class ScheduleUser {
 
     @Id

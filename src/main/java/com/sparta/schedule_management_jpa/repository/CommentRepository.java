@@ -1,6 +1,6 @@
 package com.sparta.schedule_management_jpa.repository;
 
-import com.sparta.schedule_management_jpa.entity.Comment;
+import com.sparta.schedule_management_jpa.domain.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

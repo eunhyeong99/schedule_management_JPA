@@ -1,4 +1,4 @@
-package com.sparta.schedule_management_jpa.entity;
+package com.sparta.schedule_management_jpa.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,10 +8,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "DomainUser")
 @Getter
 @Setter
-public class User {
+public class User extends Timestamped {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,20 +24,33 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
+    @Column(nullable = false)
+    private String password;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserRoleEnum role;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<ScheduleUser> scheduleUsers = new ArrayList<>();
 
-    @PrePersist
-    protected void onCreate() {
-        createdDate = LocalDateTime.now();
+    @Column(nullable = false)
+    private boolean admin;
+
+    @Column(nullable = false)
+    private String adminToken;
+
+
+    public User() {
     }
 
-    @PreUpdate
-    protected void onUpdate() {
-        updatedDate = LocalDateTime.now();
+    public boolean isAdmin() {
+        return role == UserRoleEnum.ADMIN;
     }
+
+    public String getAdminToken() {
+        return "someAdminToken";
+    }
+
+
 }
